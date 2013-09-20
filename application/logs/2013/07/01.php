@@ -1,0 +1,9 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2013-07-01 12:13:11 --- CRITICAL: ErrorException [ 8 ]: Undefined index: BillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35
+2013-07-01 12:14:19 --- CRITICAL: ErrorException [ 8 ]: Undefined index: BillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35
+2013-07-01 12:17:53 --- CRITICAL: ErrorException [ 8 ]: Undefined index: BillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35
+2013-07-01 12:24:54 --- CRITICAL: ErrorException [ 8 ]: Undefined index: NewBillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35
+2013-07-01 12:33:05 --- CRITICAL: ErrorException [ 8 ]: Undefined index: NewBillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35
+2013-07-01 12:36:34 --- CRITICAL: ErrorException [ 8 ]: Undefined index: BillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35
+2013-07-01 12:42:20 --- CRITICAL: ErrorException [ 8 ]: Undefined index: BillingStreet ~ APPPATH\classes\Controller\Payment.php [ 35 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Controller\Payment.php:35

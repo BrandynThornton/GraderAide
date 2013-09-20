@@ -1,0 +1,18 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2013-07-23 14:05:12 --- CRITICAL: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: images/alert-next-arrow.png ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request.php:979
+2013-07-23 14:05:26 --- CRITICAL: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: images/alert-next-arrow.png ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request.php:979
+2013-07-23 14:05:48 --- CRITICAL: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: images/alert-next-arrow.png ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request.php:979
+2013-07-23 14:09:07 --- CRITICAL: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: images/alert-next-arrow.png ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request.php:979
+2013-07-23 15:57:56 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: bumper ~ APPPATH\views\children\index.php [ 352 ] in C:\codebase\virtualpiggy\src\website\trunk\application\views\children\index.php:352
+2013-07-23 15:58:46 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected T_IF ~ APPPATH\views\children\index.php [ 352 ] in :
+2013-07-23 16:28:41 --- CRITICAL: ErrorException [ 8 ]: Undefined index: SpentThisMonth ~ APPPATH\classes\Model\Widgets.php [ 86 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Model\Widgets.php:86
+2013-07-23 16:28:49 --- CRITICAL: ErrorException [ 8 ]: Undefined index: SpentThisMonth ~ APPPATH\classes\Model\Widgets.php [ 86 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Model\Widgets.php:86
+2013-07-23 17:32:29 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected T_DOUBLE_ARROW ~ xdebug://debug-eval [ 1 ] in :
+2013-07-23 17:32:43 --- CRITICAL: ErrorException [ 8 ]: Undefined index:  brand_images_url ~ APPPATH\classes\Helper\Url.php [ 20 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Helper\Url.php:20
+2013-07-23 17:56:08 --- CRITICAL: ErrorException [ 8 ]: Undefined index: status ~ APPPATH\classes\Template\Children\Store.php [ 40 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Template\Children\Store.php:40
+2013-07-23 17:56:43 --- CRITICAL: ErrorException [ 8 ]: Undefined index: status ~ APPPATH\classes\Template\Children\Store.php [ 40 ] in C:\codebase\virtualpiggy\src\website\trunk\application\classes\Template\Children\Store.php:40
+2013-07-23 17:57:33 --- CRITICAL: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: images/brandsdefault_wishlist_item.png ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request.php:979
+2013-07-23 21:34:48 --- CRITICAL: ErrorException [ 1 ]: Maximum execution time of 30 seconds exceeded ~ APPPATH\classes\Model\Base.php [ 79 ] in :
+2013-07-23 21:35:56 --- CRITICAL: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: images/alert-next-arrow.png ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request.php:979
+2013-07-23 21:38:56 --- CRITICAL: ErrorException [ 1 ]: Maximum execution time of 30 seconds exceeded ~ APPPATH\classes\Model\Base.php [ 79 ] in :

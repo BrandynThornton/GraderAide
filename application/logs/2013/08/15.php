@@ -1,0 +1,6 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2013-08-15 22:21:34 --- CRITICAL: HTTP_Exception_404 [ 404 ]: The requested URL Child/Dashboard was not found on this server. ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request\Client\Internal.php:79
+2013-08-15 23:09:15 --- CRITICAL: HTTP_Exception_404 [ 404 ]: The requested URL wishlist/add/bookmarklet was not found on this server. ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request\Client\Internal.php:79
+2013-08-15 23:46:39 --- CRITICAL: HTTP_Exception_404 [ 404 ]: The requested URL WishList/AddWishListItem was not found on this server. ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Request\Client\Internal.php:79
+2013-08-15 23:58:50 --- CRITICAL: HTTP_Exception_404 [ 404 ]: The requested URL WishList/AddWishListItem was not found on this server. ~ SYSPATH\classes\Kohana\HTTP\Exception.php [ 17 ] in C:\codebase\virtualpiggy\src\website\trunk\system\classes\Kohana\Controller.php:80

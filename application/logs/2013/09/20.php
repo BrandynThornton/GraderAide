@@ -5,3 +5,4 @@
 2013-09-20 04:54:21 --- EMERGENCY: View_Exception [ 0 ]: The requested view home/marketingspace could not be found ~ SYSPATH/classes/Kohana/View.php [ 257 ] in /Applications/MAMP/htdocs/graderaide/system/classes/Kohana/View.php:137
 2013-09-20 05:14:04 --- EMERGENCY: ErrorException [ 8 ]: Undefined variable: url ~ APPPATH/views/header.php [ 5 ] in /Applications/MAMP/htdocs/graderaide/application/views/header.php:5
 2013-09-20 05:38:14 --- EMERGENCY: ErrorException [ 512 ]: log4php: Configuration failed. File not found at [/Applications/MAMP/htdocs/graderaide/application/logging.xml]. Using default configuration. ~ APPPATH/vendor/log4php/configurators/LoggerConfiguratorDefault.php [ 475 ] in :
+2013-09-20 05:55:17 --- EMERGENCY: HTTP_Exception_404 [ 404 ]: The requested URL GraderAide was not found on this server. ~ DOCROOT/system/classes/Kohana/HTTP/Exception.php [ 17 ] in /Applications/MAMP/htdocs/graderaide/system/classes/Kohana/Request/Client/Internal.php:79

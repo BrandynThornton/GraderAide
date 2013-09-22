@@ -97,7 +97,9 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/GraderAide/',
 	'index_file' => FALSE,
-    'errors' => TRUE
+    'errors' 	 => TRUE,
+	'cache_dir'  => APPPATH.'cache',
+	'caching'	 => TRUE
 ));
 
 /**

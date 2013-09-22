@@ -167,5 +167,6 @@ application/logging.production.xml
 application/logging.xml
 
 application/logs/
+application/cache/
 
 error.log

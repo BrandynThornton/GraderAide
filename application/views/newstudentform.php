@@ -29,10 +29,10 @@
           </select>
     </div>
     <label class="radio-inline">
-        <input type="radio" id="male" name="gender" value="1"> Male
+        <input type="radio" id="male" name="male" value="1"> Male
     </label>
     <label class="radio-inline">
-        <input type="radio" id="female" name="gender" value="0"> Female
+        <input type="radio" id="female" name="male" value="0"> Female
     </label>
     
     <button type="submit" class="btn btn-default">Submit</button>

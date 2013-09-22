@@ -11,6 +11,7 @@ class Controller_Login extends Controller_Base {
 	
 	public function action_newstudent()
 	{
-		$this->template->content = var_dump($this->request->post);
+		$student = new Model_Student;
+		$student->create($_POST);
 	}
 } // End Welcome/

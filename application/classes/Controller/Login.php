@@ -13,5 +13,8 @@ class Controller_Login extends Controller_Base {
 	{
 		$student = new Model_Student;
 		$student->create($_POST);
+		
+		$this->template->content = View::factory('studentaddsuccess')
+										->set('student',$student);
 	}
 } // End Welcome/

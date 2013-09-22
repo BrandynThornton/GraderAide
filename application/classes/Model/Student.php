@@ -35,10 +35,17 @@ class Model_Student extends Model_Database
         $this->LastName    = Arr::get($data, 'lastname');
         $this->DateOfBirth = Arr::get($data, 'DOB');
         $this->Male        = Arr::get($data, 'male');
-        $this->GradeLevel  = Arr::get($data, 'grade');
-        
-        var_dump($this);
-        
+        $this->GradeLevel  = Arr::get($data, 'grade');        
+    }
+    
+    public function gender()
+    {
+        return $this->Male ? 'Male' : 'Female';
+    }
+    
+    public function hisher()
+    {
+        return $this->Male ? 'his' : 'her';
     }
  
     public function get_stuff()

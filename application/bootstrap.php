@@ -95,7 +95,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/GraderAide',
+	'base_url'   => '/GraderAide/',
 	'index_file' => FALSE,
     'errors' => TRUE
 ));
@@ -138,8 +138,8 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 /**
  * Enable log4php
  */
-include('vendor/log4php/Logger.php');
-
-$loggingConfig = (Kohana::$environment === Kohana::PRODUCTION) ? 'logging.production.xml' : 'logging.xml';
-
-Logger::configure(APPPATH.$loggingConfig);
+//include('vendor/log4php/Logger.php');
+//
+//$loggingConfig = (Kohana::$environment === Kohana::PRODUCTION) ? 'logging.production.xml' : 'logging.xml';
+//
+//Logger::configure(APPPATH.$loggingConfig);

@@ -10,10 +10,16 @@ class Model_Student extends Model_Database
     public $GradeLevel;
     
     
-    //public function __constructor()
-    //{
-    //    
-    //}
+    public function __construct($data = NULL)
+    {
+        if (isset($data)) {
+            foreach($data as $k => $v) {
+                $this->$k =$v;
+            }
+        }
+        
+        parent::__construct();
+    }
     
     public function create($data)
     {

@@ -12,11 +12,21 @@
     </head>
     <body>
         <div id="container">
-            <?= View::factory('header') ?>
+            <?= $header ?>
             <div id="main">
                 <?= $content ?>
+                <!--<button id='display-students'
+                        type="button"
+                        class="btn btn-default">
+                    Click Here to display all students
+                </button>-->
+                <a id='display-students'
+                        href="/GraderAide/student/getallstudentstable"s
+                        class="btn btn-default">
+                    Click Here to display all students
+                </a>
             </div>
-            <?= View::factory('footer') ?>
+            <?= $footer ?>
         </div>
     </body>
 
@@ -26,8 +36,18 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#DOB').datepicker()
-//            alert('docs ready');
+            $('#DOB').datepicker();
+            
+            //$('#display-students').click(function(){
+            //    $.ajax({
+            //        type:'GET',
+            //        url:'/GraderAide/student/getallstudentstable',
+            //        succes: function(data) {
+            //            console.log(data);
+            //        }
+            //    })
+            //});
+            
         });
     </script>
 

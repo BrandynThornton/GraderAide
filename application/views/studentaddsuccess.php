@@ -1,4 +1,4 @@
-<div>
+<div id='student-info'>
     You have added <?= $student->FirstName ?> successfully! Here is <?= $student->hisher() ?> information:
     <ul>
         <li>

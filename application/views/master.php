@@ -14,17 +14,17 @@
         <div id="container">
             <?= $header ?>
             <div id="main">
-                <?= $content ?>
-                <!--<button id='display-students'
-                        type="button"
-                        class="btn btn-default">
-                    Click Here to display all students
-                </button>-->
                 <a id='display-students'
-                        href="/GraderAide/student/getallstudentstable"s
+                        href="/GraderAide/student"
                         class="btn btn-default">
-                    Click Here to display all students
+                    Students
                 </a>
+                <a id='add-student-form'
+                        href="/GraderAide/student/addnewform"
+                        class="btn btn-default">
+                    Add New Student
+                </a>
+                <?= $content ?>
             </div>
             <?= $footer ?>
         </div>

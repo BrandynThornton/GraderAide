@@ -10,23 +10,26 @@ class Controller_Student extends Controller_Base {
 	//	//parent:__construct();
 	//}
 	
-	public function action_getallstudentstable()
+	public function action_index()
 	{
-		//$this->template->content = 'Hey it worked this time';
-		//$results = DB::select()->from('Student')->as_object('Student')->execute();
 		$results = DB::select()->from('Student')->as_object('Model_Student');
-		
-		//var_dump($results);
 		
 		$results = $results->execute();
 		
-		//var_dump($results);
-		
-		//foreach($results as $row) {
-		//	var_dump($row->FirstName);
-		//}
-		//echo View::factory('studenttable')->set('students', $results);
 		$this->template->content = View::factory('studenttable')->set('students', $results);
-		//$this->response->body(View::factory('studenttable')->set('students', $results));
+	}
+	
+	public function action_addnewform()
+	{
+		$this->template->content = View::factory('newstudentform');
+	}
+	
+	public function action_newstudent()
+	{
+		$student = new Model_Student;
+		$student->create($_POST);
+		
+		$this->template->content = View::factory('studentaddsuccess')
+										->set('student',$student);
 	}
 }

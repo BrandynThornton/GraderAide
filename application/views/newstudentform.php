@@ -1,4 +1,4 @@
-<form id="newstudentform" action="login/newstudent" method="post" role="form">
+<form id="newstudentform" action="/GraderAide/Student/newstudent" method="post" role="form">
     <div class="form-group">
         <label for="firstname">First Name</label>
         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="John">

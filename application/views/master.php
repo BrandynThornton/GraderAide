@@ -24,6 +24,27 @@
                         class="btn btn-default">
                     Add New Student
                 </a>
+                <a id='classrooms'
+                        href="/GraderAide/classroom"
+                        class="btn btn-default">
+                    Classrooms
+                </a>
+                <a id='add-classroom'
+                        href="/GraderAide/classroom/addnewform"
+                        class="btn btn-default">
+                    Add New Classroom
+                </a>
+                <a id='teachers'
+                        href="/GraderAide/teacher"
+                        class="btn btn-default">
+                    Teachers
+                </a>
+                <a id='add-teacher'
+                        href="/GraderAide/teacher/addnewform"
+                        class="btn btn-default">
+                    Add New Teacher
+                </a>
+                
                 <?= $content ?>
             </div>
             <?= $footer ?>

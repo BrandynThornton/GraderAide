@@ -26,22 +26,30 @@ class Model_Classroom extends Model_Database
                          'INSERT INTO Classroom (Name, TeacherIdentifier, StartDate, EndDate)
                          VALUES (name, teacher, start, end)')
                         ->parameters($data);
-        $query->execute();
-        
+        $r = $query->execute();
+
+        foreach ($data['subjects'] as $subjectID) {
+            $query = DB::insert('ClassroomSubject', array('ClassroomIdentifier', 'SubjectIdentifier'))
+            ->values(array('cid','sid'))
+            ->parameters(array('cid' => $r[0], 'sid' => $subjectID));
+            $query->execute();
+        }
+
         $this->FirstName   = Arr::get($data, 'firstname');
         $this->LastName    = Arr::get($data, 'lastname');
     }
  
     public function getStudentCount()
     {
-        $results = DB::select()->distinct(TRUE)
-                   ->from('Student')
-                   ->join('Score')
-                   ->on('Student.Identifier', '=', 'Score.StudentIdentifier')
-                   ->where('Score.ClassroomIdentifier', '=', 'thisID')
+        $results = DB::select('StudentIdentifier')->distinct(TRUE)
+                   ->from('Interval')
+                   ->where('ClassroomIdentifier', '=', 'thisID')
                    ->parameters(array('thisID' => $this->Identifier));
-		
+
+
+
 		$results = $results->execute();
-        return count($results);
+
+        return $results->count();
     }
 }

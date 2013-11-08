@@ -7,17 +7,33 @@
         <label for="teacher">Teacher</label>
         <select name="teacher" id="teacher" class="form-control">
             <?  foreach($teachers as $teacher) { ?>
-                    <option value="<?= $teacher['Identifier'] ?>"><?= $teacher['FirstName'] ?></option>
+                    <option value="<?= $teacher->Identifier ?>"><?= $teacher->FirstName ?></option>
             <?  } ?>
           </select>
     </div>
-    OR
-    <a id='add-teacher'
-            href="/GraderAide/teacher/addnewform"
-            class="btn btn-default">
-        Add New Teacher
-    </a>
-    
+<!--    OR-->
+<!--    <a id='add-teacher'-->
+<!--            href="/GraderAide/teacher/addnewform"-->
+<!--            class="btn btn-default">-->
+<!--        Add New Teacher-->
+<!--    </a>-->
+
+
+    <div class="form-group">
+        <label>Subjects</label>
+        <?  foreach($subjects as $subject) { ?>
+            <label class="checkbox-inline">
+                <input type="checkbox" name="subjects[]" value="<?= $subject->Identifier ?>"> <?= $subject->DisplayName ?>
+            </label>
+        <?  } ?>
+    </div>
+<!--    OR-->
+<!--    <a id='add-subject'-->
+<!--       href="/GraderAide/Classroom/subject"-->
+<!--       class="btn btn-default">-->
+<!--        Subjects-->
+<!--    </a>-->
+
     <div class="form-group">
         <label for="start">Start Date</label>
         <div class="input-append date" id="dp3" data-date="" data-date-format="dd-mm-yyyy">

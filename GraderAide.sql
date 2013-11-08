@@ -1,18 +1,42 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.7
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2013 at 07:01 AM
--- Server version: 5.5.29
--- PHP Version: 5.4.10
+-- Generation Time: Nov 08, 2013 at 10:24 AM
+-- Server version: 5.5.33
+-- PHP Version: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `GraderAide`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Assignment`
+--
+
+CREATE TABLE `Assignment` (
+  `Identifier` int(11) NOT NULL AUTO_INCREMENT,
+  `IntervalIdentifier` int(11) NOT NULL,
+  `SubjectIdentifier` int(11) NOT NULL,
+  `ExpectedScore` float DEFAULT NULL,
+  `CompletedScore` float DEFAULT NULL,
+  `Description` varchar(45) DEFAULT NULL,
+  `LetterGrade` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`IntervalIdentifier`,`SubjectIdentifier`),
+  UNIQUE KEY `Identifier_UNIQUE` (`Identifier`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -24,47 +48,37 @@ CREATE TABLE `Classroom` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
   `TeacherIdentifier` int(11) NOT NULL,
-  `StartDate` datetime DEFAULT NULL,
-  `EndDate` datetime DEFAULT NULL,
+  `StartDate` date DEFAULT NULL,
+  `EndDate` date DEFAULT NULL,
   PRIMARY KEY (`Identifier`),
   UNIQUE KEY `Identifier_UNIQUE` (`Identifier`),
   KEY `TeacherIdentifier_idx` (`TeacherIdentifier`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `Classroom`
---
-
-INSERT INTO `Classroom` (`Identifier`, `Name`, `TeacherIdentifier`, `StartDate`, `EndDate`) VALUES
-(1, 'Best Class Ever', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Best Class Ever', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'Best Class Ever', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 'Best Class Ever', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 'Best Class Ever', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 'Best Class Ever', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 'New class', 1, '2001-01-12 00:00:00', '2001-01-13 00:00:00');
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Score`
+-- Table structure for table `ClassroomSubject`
 --
 
-CREATE TABLE `Score` (
+CREATE TABLE `ClassroomSubject` (
+  `ClassroomIdentifier` int(11) NOT NULL,
+  `SubjectIdentifier` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Interval`
+--
+
+CREATE TABLE `Interval` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
-  `ClassroomIdentifier` int(11) DEFAULT NULL,
-  `StudentIdentifier` int(11) DEFAULT NULL,
-  `Subject` varchar(45) DEFAULT NULL,
-  `ExpectedScore` float DEFAULT NULL,
-  `CompletedScore` float DEFAULT NULL,
-  `Description` varchar(45) DEFAULT NULL,
-  `LetterGrade` varchar(45) DEFAULT NULL,
-  `Week` datetime DEFAULT NULL,
-  PRIMARY KEY (`Identifier`),
-  UNIQUE KEY `Identifier_UNIQUE` (`Identifier`),
-  KEY `ClassroomIdentifier_idx` (`ClassroomIdentifier`),
-  KEY `StudentIdentifier_idx` (`StudentIdentifier`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `ClassroomIdentifier` int(11) NOT NULL,
+  `StudentIdentifier` int(11) NOT NULL,
+  `Date` date NOT NULL,
+  PRIMARY KEY (`Identifier`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -81,14 +95,19 @@ CREATE TABLE `Student` (
   `Male` bit(1) DEFAULT NULL,
   PRIMARY KEY (`Identifier`),
   UNIQUE KEY `Identifier_UNIQUE` (`Identifier`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `Student`
+-- Table structure for table `Subject`
 --
 
-INSERT INTO `Student` (`Identifier`, `FirstName`, `LastName`, `GradeLevel`, `DateOfBirth`, `Male`) VALUES
-(13, 'Shawn', 'Jones', 8, '1989-01-06 00:00:00', '');
+CREATE TABLE `Subject` (
+  `Identifier` int(11) NOT NULL AUTO_INCREMENT,
+  `DisplayName` varchar(20) NOT NULL,
+  PRIMARY KEY (`Identifier`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -104,10 +123,6 @@ CREATE TABLE `Teacher` (
   UNIQUE KEY `Identifier_UNIQUE` (`Identifier`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `Teacher`
---
-
-INSERT INTO `Teacher` (`Identifier`, `FirstName`, `LastName`) VALUES
-(1, 'Shawn', 'Jones'),
-(2, 'Brandyn', 'Thornton');
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

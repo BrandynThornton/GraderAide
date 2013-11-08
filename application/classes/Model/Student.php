@@ -54,9 +54,5 @@ class Model_Student extends Model_Database
         return $this->Male ? 'his' : 'her';
     }
  
-    public function get_stuff()
-    {
-        // Get stuff from the database:
-        return $this->db->query();
-    }
+
 }

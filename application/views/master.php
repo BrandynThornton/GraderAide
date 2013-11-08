@@ -44,6 +44,11 @@
                         class="btn btn-default">
                     Add New Teacher
                 </a>
+                <a id='add-subject'
+                   href="/GraderAide/classroom/subject"
+                   class="btn btn-default">
+                    Subjects
+                </a>
                 
                 <?= $content ?>
             </div>

@@ -97,29 +97,30 @@ class Controller_Classroom extends Controller_Base {
             ->group_by('i.Identifier','s.Identifier')
             ->order_by('i.Date')
             ->param('classID',$classID);
-		//$this->template->content = $results;
 
 		$results = $results->execute();
-//		$classrooms = array();
-//
-//		foreach ($results as $row) {
-//            array_push($classrooms,
-//                new Model_Classroom(array(
-//                    'Identifier' 		 => $row['ClassIdentifier'],
-//                    'Name' 		     => $row['ClassName'],
-//                    'TeacherIdentifier' => $row['TeacherIdentifier'],
-//                    'StartDate' 		 => $row['StartDate'],
-//                    'EndDate' 			 => $row['EndDate'],
-//                    'Teacher'			 => new Model_Teacher(array(
-//                            'Identifier'     => $row['TeacherIdentifier'],
-//                            'FirstName'		 => $row['FirstName'],
-//                            'LastName'		 => $row['LastName']
-//                        ))
-//                ))
-//            );
-//        }
 
-		$this->template->content = View::factory('classroom')->set('classrooms', $results);
+        $classrooms = array();
+
+
+		foreach ($results as $row) {
+            array_push($classrooms,
+                new Model_Classroom(array(
+                    'Identifier' 		 => $row['ClassIdentifier'],
+                    'Name' 		         => $row['ClassName'],
+                    'TeacherIdentifier'  => $row['TeacherIdentifier'],
+                    'StartDate' 		 => $row['StartDate'],
+                    'EndDate' 			 => $row['EndDate'],
+                    'Teacher'			 => new Model_Teacher(array(
+                            'Identifier'     => $row['TeacherIdentifier'],
+                            'FirstName'		 => $row['FirstName'],
+                            'LastName'		 => $row['LastName']
+                        ))
+                ))
+            );
+        }
+
+		$this->template->content = View::factory('classroom')->set('classroom', $classrooms);
 
 
 

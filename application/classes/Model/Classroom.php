@@ -20,14 +20,17 @@ class Model_Classroom extends Model_Database
             $results = DB::select()
                 ->from('Classroom')
                 ->where('Identifier', '=', 'classID')
-                ->param('classID', $Identifier)->execute();
+                ->param('classID', $Identifier)
+                ->execute();
+
         }
 
-        $this->Name              = $Name ?: $results['Name'];
-        $this->TeacherIdentifier = $TeacherIdentifier ?: $results['TeacherIdentifier'];
-        $this->Teacher           = isset($this->$TeacherIdentifier) ? new Model_Teacher($TeacherIdentifier) : NULL;
-        $this->StartDate         = $StartDate ?: $results['StartDate'];
-        $this->EndDate           = $EndDate ?: $results['EndDate'];
+        $this->Name              = $results->get('Name', $Name);
+        $this->StartDate         = $results->get('StartDate', $StartDate);
+        $this->EndDate           = $results->get('EndDate', $EndDate);
+
+        $this->TeacherIdentifier = $results->get('TeacherIdentifier', $TeacherIdentifier);
+        $this->Teacher           = isset($this->TeacherIdentifier) ? new Model_Teacher($TeacherIdentifier) : NULL;
     }
 
     private function getSubjects($ClassroomID) {
@@ -46,14 +49,20 @@ class Model_Classroom extends Model_Database
     }
 
     private function getStudents($ClassroomID) {
-        $results = DB::select('StudentIdentifier')->distinct(TRUE)
+        $students = array();
+
+        $result = DB::select('StudentIdentifier')->distinct(TRUE)
             ->from('Interval')
             ->where('ClassroomIdentifier', '=', 'classID')
             ->param('classID', $ClassroomID)
-            ->as_object('Model_Student')
             ->execute();
 
-        return $results;
+        for ($i = 0; $i < $result->count(); $i++) {
+            array_push($students, new Model_Student($result->get('StudentIdentifier')));
+            $result->next();
+        }
+
+        return $students;
     }
     
     public function create($data)

@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,16 +19,18 @@
  */
 
 /**
- * Returns platform-specific newline character(s). 
- * 
+ * Returns platform-specific newline character(s).
+ *
  * @package log4php
  * @subpackage pattern
  * @version $Revision: 1326626 $
  * @since 2.3
  */
-class LoggerPatternConverterNewLine extends LoggerPatternConverter {
+class LoggerPatternConverterNewLine extends LoggerPatternConverter
+{
 
-	public function convert(LoggerLoggingEvent $event) {
-		return PHP_EOL;
-	}
+    public function convert(LoggerLoggingEvent $event)
+    {
+        return PHP_EOL;
+    }
 }

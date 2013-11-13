@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,21 +20,24 @@
 
 /**
  * Returns the literal value passed in the constructor, without modifications.
- * 
+ *
  * @package log4php
  * @subpackage pattern
  * @version $Revision: 1326626 $
  * @since 2.3
  */
-class LoggerPatternConverterLiteral extends LoggerPatternConverter {
+class LoggerPatternConverterLiteral extends LoggerPatternConverter
+{
 
-	private $literalValue;
-	
-	public function __construct($literalValue) {
-		$this->literalValue = $literalValue;
-	}
-	
-	public function convert(LoggerLoggingEvent $event) {
-		return $this->literalValue;
-	}
+    private $literalValue;
+
+    public function __construct($literalValue)
+    {
+        $this->literalValue = $literalValue;
+    }
+
+    public function convert(LoggerLoggingEvent $event)
+    {
+        return $this->literalValue;
+    }
 }

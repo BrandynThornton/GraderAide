@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,18 +19,20 @@
  */
 
 /**
- * Returns the number of milliseconds elapsed since the start of the 
+ * Returns the number of milliseconds elapsed since the start of the
  * application until the creation of the logging event.
- * 
+ *
  * @package log4php
  * @subpackage pattern
  * @version $Revision: 1379731 $
  * @since 2.3
  */
-class LoggerPatternConverterRelative extends LoggerPatternConverter {
+class LoggerPatternConverterRelative extends LoggerPatternConverter
+{
 
-	public function convert(LoggerLoggingEvent $event) {
-		$ts = $event->getRelativeTime();
-		return number_format($ts, 4);
-	}
+    public function convert(LoggerLoggingEvent $event)
+    {
+        $ts = $event->getRelativeTime();
+        return number_format($ts, 4);
+    }
 }

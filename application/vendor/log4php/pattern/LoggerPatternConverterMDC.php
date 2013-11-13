@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,36 +20,39 @@
 
 /**
  * Returns the Mapped Diagnostic Context value corresponding to the given key.
- * 
+ *
  * Options:
  *  [0] the MDC key
- * 
+ *
  * @package log4php
  * @subpackage pattern
  * @version $Revision: 1326626 $
  * @since 2.3
  */
-class LoggerPatternConverterMDC extends LoggerPatternConverter {
+class LoggerPatternConverterMDC extends LoggerPatternConverter
+{
 
-	private $key;
+    private $key;
 
-	public function activateOptions() {
-		if (isset($this->option) && $this->option !== '') {
-			$this->key = $this->option;
-		}
-	}
-	
-	public function convert(LoggerLoggingEvent $event) {
-		if (isset($this->key)) {
-			return $event->getMDC($this->key);
-		} else {
-			$buff = array();
-			$map = $event->getMDCMap();
-			foreach($map as $key => $value) {
-				$buff []= "$key=$value";
-			}
-			return implode(', ', $buff);
-		}
-	}
+    public function activateOptions()
+    {
+        if (isset($this->option) && $this->option !== '') {
+            $this->key = $this->option;
+        }
+    }
+
+    public function convert(LoggerLoggingEvent $event)
+    {
+        if (isset($this->key)) {
+            return $event->getMDC($this->key);
+        } else {
+            $buff = array();
+            $map  = $event->getMDCMap();
+            foreach ($map as $key => $value) {
+                $buff [] = "$key=$value";
+            }
+            return implode(', ', $buff);
+        }
+    }
 }
  

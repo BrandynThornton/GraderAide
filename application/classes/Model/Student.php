@@ -18,21 +18,23 @@ class Model_Student extends Model_Database
             ->where('Identifier', '=', $Identifier)
             ->execute();
 
-//            $results = DB::select()
-//                            ->from('Interval')
-//                            ->where('StudentIdentifier', '=', $this->Identifier)
-//                            ->execute();
-//
-//            for ($i = 0 ; $i < $results->count() ; $i++) {
-//                array_push($this->Intervals,
-//                    new Model_Interval($results->get('Identifier')));
-//            }
-
+        $this->Identifier  = $result->get('Identifier', $Identifier);
         $this->FirstName   = $result->get('FirstName', $FirstName);
         $this->LastName    = $result->get('LastName', $LastName);
         $this->DateOfBirth = $result->get('DateOfBirth', $DateOfBirth);
         $this->Male        = $result->get('Male', $Male);
         $this->GradeLevel  = $result->get('GradeLevel', $GradeLevel);
+
+        $results = DB::select()
+            ->from('Interval')
+            ->where('StudentIdentifier', '=', $this->Identifier)
+            ->execute();
+
+        for ($i = 0; $i < $results->count(); $i++) {
+            array_push($this->Intervals,
+                new Model_Interval($results->get('Identifier')));
+            $results->next();
+        }
     }
 
     public function create($data)

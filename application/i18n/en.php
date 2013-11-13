@@ -3,5 +3,5 @@
 //This reference must be in alphabetical order!
 return array
 (
-    'graderaide'            => 'GraderAide'
+    'graderaide' => 'GraderAide'
 );

@@ -24,5 +24,6 @@
  * @version $Revision: 1334369 $
  * @package log4php
  */
-class LoggerException extends Exception {
+class LoggerException extends Exception
+{
 }

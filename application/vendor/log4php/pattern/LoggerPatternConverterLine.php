@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,17 +19,19 @@
  */
 
 /**
- * Returns the line number within the file from which the logging request was 
- * issued. 
- * 
+ * Returns the line number within the file from which the logging request was
+ * issued.
+ *
  * @package log4php
  * @subpackage pattern
  * @version $Revision: 1326626 $
  * @since 2.3
  */
-class LoggerPatternConverterLine extends LoggerPatternConverter {
+class LoggerPatternConverterLine extends LoggerPatternConverter
+{
 
-	public function convert(LoggerLoggingEvent $event) {
-		return $event->getLocationInformation()->getLineNumber();
-	}
+    public function convert(LoggerLoggingEvent $event)
+    {
+        return $event->getLocationInformation()->getLineNumber();
+    }
 }

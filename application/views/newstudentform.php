@@ -9,6 +9,7 @@
     </div>
     <div class="form-group">
         <label for="DOB">Date Of Birth</label>
+
         <div class="input-append date" id="dp3" data-date="" data-date-format="dd-mm-yyyy">
             <input id="DOB" name="DOB" class="span2" size="16" type="text" value="">
             <span class="add-on"><i class="icon-th"></i></span>
@@ -26,7 +27,7 @@
             <option>6</option>
             <option>7</option>
             <option>8</option>
-          </select>
+        </select>
     </div>
     <label class="radio-inline">
         <input type="radio" id="male" name="male" value="1"> Male
@@ -34,6 +35,6 @@
     <label class="radio-inline">
         <input type="radio" id="female" name="male" value="0"> Female
     </label>
-    
+
     <button type="submit" class="btn btn-default">Submit</button>
 </form>

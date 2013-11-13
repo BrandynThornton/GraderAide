@@ -2,5 +2,5 @@
 
 return array
 (
-	'currency_symbol'             => '£',
+    'currency_symbol' => '£',
 );

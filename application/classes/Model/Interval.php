@@ -6,60 +6,52 @@ class Model_Interval extends Model_Database
     public $ClassroomIdentifier;
     public $StudentIdentifier;
     public $Date;
-    public $Assignments;
-    
+    public $Assignments = array();
+
     public function __construct($Identifier = NULL, $ClassroomIdentifier = NULL, $StudentIdentifier = NULL, $Date = NULL)
     {
-      $this->$Identifier = $Identifier;
-      $this->$ClassroomIdentifier = $ClassroomIdentifier;
-      $this->$StudentIdentifier = $StudentIdentifier;
-      $this->$Date = $Date;
-      if(isset($this->$Identifier))
-         $this->populate();
-      parent::__construct();
+        $result = DB::select()
+            ->from('Interval')
+            ->where('Identifier', '=', $Identifier)
+            ->execute();
+
+        $this->Identifier          = $result->get('Identifier', $Identifier);
+        $this->ClassroomIdentifier = $result->get('ClassroomIdentifier', $ClassroomIdentifier);
+        $this->StudentIdentifier   = $result->get('StudentIdentifier', $StudentIdentifier);
+        $this->Date                = $result->get('Date', $Date);
+
+        $results = DB::select()
+            ->from('ClassroomSubject')
+            ->where('ClassroomIdentifier', '=', $this->ClassroomIdentifier)
+            ->execute();
+
+        for ($i = 0; $i < $results->count(); $i++) {
+            array_push($this->Assignments,
+                new Model_Assignment($this->Identifier, $results->get('SubjectIdentifier')));
+            $results->next();
+        }
     }
-    
-    public function populate()
-    {
-      $query = DB::select()->from('Interval')->where('Identifier', '=', $this->$Identifier);
-      $r = $query->execute();
-      
-      $this->ClassroomIdentifier  = Arr::get($r, 'ClassroomIdentifier');
-      $this->StudentIdentifier    = Arr::get($r, 'StudentIdentifier');
-      $this->Date                 = Arr::get($r, 'Date');
-      
-      $subjectQuery = DB::select()->from('ClassroomSubject')->where('ClassroomIdentifier', '=', $this->$ClassroomIdentifier);
-      $subjectQuery->execute();
-      
-      $this->$Assignments = array();
-      
-      foreach ($subjectQuery as $subject) {
-			array_push($this->$Assignments,
-				new Model_Assignment($this->IntervalIdentifier, $subject['SubjectIdentifier']))
-			);
-		}
-    }
-    
+
     public function save()
     {
-      if(isset($this->$Identifier))
-         $this->dbInsert();
-      else
-         $this->dbUpdate();
+        if (isset($this->Identifier))
+            $this->dbInsert();
+        else
+            $this->dbUpdate();
     }
-    
+
     public function dbInsert()
     {
-      $query = DB::insert('Interval', array('ClassroomIdentifier', 'StudentIdentifier', 'Date'))->values(array($this->$ClassroomIdentifier, $this->$StudentIdentifier, $this->$Date));
-      
-      $r = $query->execute();
+        $query = DB::insert('Interval', array('ClassroomIdentifier', 'StudentIdentifier', 'Date'))->values(array($this->ClassroomIdentifier, $this->StudentIdentifier, $this->Date));
+
+        $r = $query->execute();
     }
-    
+
     public function dbUpdate()
     {
-      $query = DB::update('Interval')->set(array('ClassroomIdentifier' => $this->$ClassroomIdentifier, 'StudentIdentifier' => $this->$StudentIdentifier, 'Date' => $this->$Date))->where('Identifier', '=', $this->$Identifier);
-      
-      $r = $query->execute();
+        $query = DB::update('Interval')->set(array('ClassroomIdentifier' => $this->ClassroomIdentifier, 'StudentIdentifier' => $this->StudentIdentifier, 'Date' => $this->Date))->where('Identifier', '=', $this->Identifier);
+
+        $r = $query->execute();
     }
-    
+
 }

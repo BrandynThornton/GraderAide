@@ -1,4 +1,4 @@
-<? if ( ! count($subjects)) {
+<? if (!count($subjects)) {
     echo "Please add a new subject";
 } ?>
 

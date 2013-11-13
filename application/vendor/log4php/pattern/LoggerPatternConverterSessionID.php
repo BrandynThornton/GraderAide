@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,15 +19,17 @@
  */
 
 /**
- * Returns the active session ID, or an empty string if out of session. 
- * 
+ * Returns the active session ID, or an empty string if out of session.
+ *
  * @package log4php
  * @subpackage pattern
  * @version $Revision: 1326626 $
  * @since 2.3
  */
-class LoggerPatternConverterSessionID extends LoggerPatternConverter {
-	public function convert(LoggerLoggingEvent $event) {
-		return session_id();
-	}
+class LoggerPatternConverterSessionID extends LoggerPatternConverter
+{
+    public function convert(LoggerLoggingEvent $event)
+    {
+        return session_id();
+    }
 }

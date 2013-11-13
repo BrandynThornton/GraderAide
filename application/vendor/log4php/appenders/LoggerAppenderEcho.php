@@ -7,7 +7,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
  *
- *	   http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,13 +17,13 @@
  */
 
 /**
- * LoggerAppenderEcho uses the PHP echo() function to output events. 
- * 
+ * LoggerAppenderEcho uses the PHP echo() function to output events.
+ *
  * This appender uses a layout.
- * 
+ *
  * ## Configurable parameters: ##
- * 
- * - **htmlLineBreaks** - If set to true, a <br /> element will be inserted 
+ *
+ * - **htmlLineBreaks** - If set to true, a <br /> element will be inserted
  *     before each line break in the logged message. Default is false.
  *
  * @version $Revision: 1337820 $
@@ -32,57 +32,62 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
  * @link http://logging.apache.org/log4php/docs/appenders/echo.html Appender documentation
  */
-class LoggerAppenderEcho extends LoggerAppender {
-	/** 
-	 * Used to mark first append. Set to false after first append.
-	 * @var boolean 
-	 */
-	protected $firstAppend = true;
-	
-	/** 
-	 * If set to true, a <br /> element will be inserted before each line
-	 * break in the logged message. Default value is false. @var boolean 
-	 */
-	protected $htmlLineBreaks = false;
-	
-	public function close() {
-		if($this->closed != true) {
-			if(!$this->firstAppend) {
-				echo $this->layout->getFooter();
-			}
-		}
-		$this->closed = true;
-	}
+class LoggerAppenderEcho extends LoggerAppender
+{
+    /**
+     * Used to mark first append. Set to false after first append.
+     * @var boolean
+     */
+    protected $firstAppend = TRUE;
 
-	public function append(LoggerLoggingEvent $event) {
-		if($this->layout !== null) {
-			if($this->firstAppend) {
-				echo $this->layout->getHeader();
-				$this->firstAppend = false;
-			}
-			$text = $this->layout->format($event);
-			
-			if ($this->htmlLineBreaks) {
-				$text = nl2br($text);
-			}
-			echo $text;
-		} 
-	}
-	
-	/**
-	 * Sets the 'htmlLineBreaks' parameter.
-	 * @param boolean $value
-	 */
-	public function setHtmlLineBreaks($value) {
-		$this->setBoolean('htmlLineBreaks', $value);
-	}
-	
-	/**
-	 * Returns the 'htmlLineBreaks' parameter.
-	 * @returns boolean
-	 */
-	public function getHtmlLineBreaks() {
-		return $this->htmlLineBreaks;
-	}
+    /**
+     * If set to true, a <br /> element will be inserted before each line
+     * break in the logged message. Default value is false. @var boolean
+     */
+    protected $htmlLineBreaks = FALSE;
+
+    public function close()
+    {
+        if ($this->closed != TRUE) {
+            if (!$this->firstAppend) {
+                echo $this->layout->getFooter();
+            }
+        }
+        $this->closed = TRUE;
+    }
+
+    public function append(LoggerLoggingEvent $event)
+    {
+        if ($this->layout !== NULL) {
+            if ($this->firstAppend) {
+                echo $this->layout->getHeader();
+                $this->firstAppend = FALSE;
+            }
+            $text = $this->layout->format($event);
+
+            if ($this->htmlLineBreaks) {
+                $text = nl2br($text);
+            }
+            echo $text;
+        }
+    }
+
+    /**
+     * Sets the 'htmlLineBreaks' parameter.
+     * @param boolean $value
+     */
+    public function setHtmlLineBreaks($value)
+    {
+        $this->setBoolean('htmlLineBreaks', $value);
+    }
+
+    /**
+     * Returns the 'htmlLineBreaks' parameter.
+     * @returns boolean
+     */
+    public function getHtmlLineBreaks()
+    {
+        return $this->htmlLineBreaks;
+    }
 }
 

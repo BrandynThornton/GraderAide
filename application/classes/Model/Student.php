@@ -8,17 +8,43 @@ class Model_Student extends Model_Database
     public $DateOfBirth;
     public $Male;
     public $GradeLevel;
+    public $Intervals;
     
     
-    public function __construct($data = NULL)
+    public function __construct($Identifier = NULL, $FirstName = NULL, $LastName = NULL, $DateOfBirth = NULL, $Male = NULL, $GradeLevel = NULL)
     {
-        if (isset($data)) {
-            foreach($data as $k => $v) {
-                $this->$k =$v;
-            }
-        }
-        
-        parent::__construct();
+      $this->$Identifier = $Identifier;
+      $this->$FirstName = $FirstName;
+      $this->$LastName = $LastName;
+      $this->$DateOfBirth = $DateOfBirth;
+      $this->$Male = $Male;
+      $this->$GradeLevel = $GradeLevel;
+      if(isset($this->$Identifier))
+         $this->populate();
+      parent::__construct();
+    }
+    
+    public function populate()
+    {
+      $query = DB::select()->from('Student')->where('Identifier', '=', $this->$Identifier);
+      $r = $query->execute();
+      
+      $this->FirstName     = Arr::get($r, 'FirstName');
+      $this->LastName      = Arr::get($r, 'LastName');
+      $this->DateOfBirth   = Arr::get($r, 'DateOfBirth');
+      $this->Male          = Arr::get($r, 'Male');
+      $this->GradeLevel    = Arr::get($r, 'GradeLevel');
+      
+      $this->Intervals = array();
+      
+      $intervalQuery = DB::select()->from('Interval')->where('StudentIdentifier', '=', $this->$Identifier);
+      $intervalQuery->execute();
+      
+      foreach ($intervalQuery as $interval) {
+			array_push($this->$Intervals,
+				new Model_Interval($$interval['Identifier']))
+			);
+		}
     }
     
     public function create($data)

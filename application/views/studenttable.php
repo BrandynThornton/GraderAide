@@ -1,4 +1,3 @@
-
 <table class="table table-striped table-condensed">
     <thead>
         <tr>
@@ -11,8 +10,6 @@
     </thead>
     <tbody>
     <?
-    echo Debug::vars(new Model_Classroom(1));
-
     foreach ($students as $student) {
     ?>
         <tr>

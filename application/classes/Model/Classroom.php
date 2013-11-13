@@ -6,54 +6,18 @@ class Model_Classroom extends Model_Database
     public $Name;
     public $TeacherIdentifier;
     public $Teacher;
-    public $Subjects;
     public $StartDate;
     public $EndDate;
     
-    public function __construct($Identifier = NULL, $Name = NULL, $TeacherIdentifier = NULL, $StartDate = NULL, $EndDate = NULL)
+    public function __construct($data = NULL)
     {
-        if ( ! empty($Identifier)) {
-            $this->Identifier        = $Identifier;
-            $this->Subjects          = $this->getSubjects($Identifier);
-            $this->Students          = $this->getStudents($Identifier);
-
-            $results = DB::select()
-                ->from('Classroom')
-                ->where('Identifier', '=', 'classID')
-                ->param('classID', $Identifier)->execute();
+        if (isset($data)) {
+            foreach($data as $k => $v) {
+                $this->$k =$v;
+            }
         }
-
-        $this->Name              = $Name ?: $results['Name'];
-        $this->TeacherIdentifier = $TeacherIdentifier ?: $results['TeacherIdentifier'];
-        $this->Teacher           = isset($this->$TeacherIdentifier) ? new Model_Teacher($TeacherIdentifier) : NULL;
-        $this->StartDate         = $StartDate ?: $results['StartDate'];
-        $this->EndDate           = $EndDate ?: $results['EndDate'];
-    }
-
-    private function getSubjects($ClassroomID) {
-        $results = DB::select(array('s.DisplayName','Subject'))
-            ->from(array('ClassroomSubject', 'cs'))
-            ->join(array('Subject', 's'))
-            ->on('s.Identifier', '=', 'cs.SubjectIdentifier')
-            ->where('cs.ClassroomIdentifier', '=', 'classID')
-            ->param('classID', $ClassroomID);
-
-        $results = $results->execute()->as_array(NULL,'Subject');
-
-        echo Debug::dump($results);
-
-        return $results;
-    }
-
-    private function getStudents($ClassroomID) {
-        $results = DB::select('StudentIdentifier')->distinct(TRUE)
-            ->from('Interval')
-            ->where('ClassroomIdentifier', '=', 'classID')
-            ->param('classID', $ClassroomID)
-            ->as_object('Model_Student')
-            ->execute();
-
-        return $results;
+        
+        parent::__construct();
     }
     
     public function create($data)

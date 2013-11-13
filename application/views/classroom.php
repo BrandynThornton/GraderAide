@@ -1,5 +1,1 @@
-<?
-foreach ($classrooms as $row) {
-    echo Debug::vars($row);
-}
-?>
+<?var_dump($classrooms)?>

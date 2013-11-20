@@ -10,13 +10,6 @@
     </thead>
     <tbody>
     <?
-    echo Debug::vars(new Model_Classroom(1));
-    $results = DB::select()
-        ->from('Classroom')
-        ->where('Identifier', '=', 'classID')
-        ->param('classID', 1)
-        ->execute()->as_array();
-    echo Debug::vars($results);
 
     foreach ($students as $student) {
         ?>

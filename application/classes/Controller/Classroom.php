@@ -5,18 +5,8 @@ class Controller_Classroom extends Controller_Base
 
     public function action_index()
     {
-        $results = DB::select(
-            array('c.Identifier', 'ClassIdentifier'),
-            array('c.Name', 'ClassName'),
-            'c.TeacherIdentifier',
-            'c.StartDate',
-            'c.EndDate',
-            'Teacher.FirstName',
-            'Teacher.LastName'
-        )
-            ->from(array('Classroom', 'c'))
-            ->join('Teacher')
-            ->on('c.TeacherIdentifier', '=', 'Teacher.Identifier');
+        $results = DB::select('Identifier')
+            ->from('Classroom');
         //$this->template->content = $results;
 
         $results    = $results->execute();
@@ -24,18 +14,7 @@ class Controller_Classroom extends Controller_Base
 
         foreach ($results as $row) {
             array_push($classrooms,
-                new Model_Classroom(array(
-                    'Identifier'        => $row['ClassIdentifier'],
-                    'Name'              => $row['ClassName'],
-                    'TeacherIdentifier' => $row['TeacherIdentifier'],
-                    'StartDate'         => $row['StartDate'],
-                    'EndDate'           => $row['EndDate'],
-                    'Teacher'           => new Model_Teacher(array(
-                            'Identifier' => $row['TeacherIdentifier'],
-                            'FirstName'  => $row['FirstName'],
-                            'LastName'   => $row['LastName']
-                        ))
-                ))
+                new Model_Classroom($row['Identifier'])
             );
         }
 
@@ -74,55 +53,36 @@ class Controller_Classroom extends Controller_Base
 
         $classID = $this->request->param('id');
 
-        $results = DB::select(
-            'st.FirstName',
-            'st.LastName',
-            array('st.Identifier', 'StudentID'),
-            array('s.DisplayName', 'Subject'),
-            'i.Date',
-            'a.Description',
-            'a.CompletedScore',
-            'a.ExpectedScore',
-            'a.LetterGrade'
-        )
-            ->from(array('Interval', 'i'))
-            ->join(array('Student', 'st'))
-            ->on('i.StudentIdentifier', '=', 'st.Identifier')
-            ->join(array('ClassroomSubject', 'cs'))
-            ->on('i.ClassroomIdentifier', '=', 'cs.ClassroomIdentifier')
-            ->join(array('Subject', 's'))
-            ->on('s.Identifier', '=', 'cs.SubjectIdentifier')
-            ->join(array('Assignment', 'a'), 'LEFT')
-            ->on('a.IntervalIdentifier', '=', 'i.Identifier')
-            ->on('a.SubjectIdentifier', '=', 's.Identifier')
-            ->where('i.ClassroomIdentifier', '=', 'classID')
-            ->group_by('i.Identifier', 's.Identifier')
-            ->order_by('i.Date')
-            ->param('classID', $classID);
+//        $results = DB::select(
+//            'st.FirstName',
+//            'st.LastName',
+//            array('st.Identifier', 'StudentID'),
+//            array('s.DisplayName', 'Subject'),
+//            'i.Date',
+//            'a.Description',
+//            'a.CompletedScore',
+//            'a.ExpectedScore',
+//            'a.LetterGrade'
+//        )
+//            ->from(array('Interval', 'i'))
+//            ->join(array('Student', 'st'))
+//            ->on('i.StudentIdentifier', '=', 'st.Identifier')
+//            ->join(array('ClassroomSubject', 'cs'))
+//            ->on('i.ClassroomIdentifier', '=', 'cs.ClassroomIdentifier')
+//            ->join(array('Subject', 's'))
+//            ->on('s.Identifier', '=', 'cs.SubjectIdentifier')
+//            ->join(array('Assignment', 'a'), 'LEFT')
+//            ->on('a.IntervalIdentifier', '=', 'i.Identifier')
+//            ->on('a.SubjectIdentifier', '=', 's.Identifier')
+//            ->where('i.ClassroomIdentifier', '=', 'classID')
+//            ->group_by('i.Identifier', 's.Identifier')
+//            ->order_by('i.Date')
+//            ->param('classID', $classID);
 
-        $results = $results->execute();
-
-        $classrooms = array();
+        $classroom = new Model_Classroom($classID);
 
 
-        foreach ($results as $row) {
-            array_push($classrooms,
-                new Model_Classroom(array(
-                    'Identifier'        => $row['ClassIdentifier'],
-                    'Name'              => $row['ClassName'],
-                    'TeacherIdentifier' => $row['TeacherIdentifier'],
-                    'StartDate'         => $row['StartDate'],
-                    'EndDate'           => $row['EndDate'],
-                    'Teacher'           => new Model_Teacher(array(
-                            'Identifier' => $row['TeacherIdentifier'],
-                            'FirstName'  => $row['FirstName'],
-                            'LastName'   => $row['LastName']
-                        ))
-                ))
-            );
-        }
-
-        $this->template->content = View::factory('classroom')->set('classroom', $classrooms);
+        $this->template->content = View::factory('classroom')->set('classroom', $classroom);
 
 
     }

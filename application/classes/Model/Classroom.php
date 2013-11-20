@@ -12,7 +12,7 @@ class Model_Classroom extends Model_Database
 
     public function __construct($Identifier = NULL, $Name = NULL, $TeacherIdentifier = NULL, $StartDate = NULL, $EndDate = NULL)
     {
-        if (!empty($Identifier)) {
+//        if (!empty($Identifier)) {
             $this->Identifier = $Identifier;
             $this->Subjects   = $this->getSubjects($Identifier);
             $this->Students   = $this->getStudents($Identifier);
@@ -23,7 +23,7 @@ class Model_Classroom extends Model_Database
                 ->param('classID', $Identifier)
                 ->execute();
 
-        }
+//        }
 
         $this->Name      = $results->get('Name', $Name);
         $this->StartDate = $results->get('StartDate', $StartDate);

@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `Assignment`
 --
-
+DROP TABLE IF EXISTS `Assignment`;
 CREATE TABLE `Assignment` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
   `IntervalIdentifier` int(11) NOT NULL,
@@ -43,6 +43,7 @@ CREATE TABLE `Assignment` (
 --
 -- Table structure for table `Classroom`
 --
+DROP TABLE IF EXISTS `Classroom`;
 
 CREATE TABLE `Classroom` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
@@ -60,6 +61,7 @@ CREATE TABLE `Classroom` (
 --
 -- Table structure for table `ClassroomSubject`
 --
+DROP TABLE IF EXISTS `ClassroomSubject`;
 
 CREATE TABLE `ClassroomSubject` (
   `ClassroomIdentifier` int(11) NOT NULL,
@@ -71,6 +73,7 @@ CREATE TABLE `ClassroomSubject` (
 --
 -- Table structure for table `Interval`
 --
+DROP TABLE IF EXISTS `Interval`;
 
 CREATE TABLE `Interval` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
@@ -85,6 +88,7 @@ CREATE TABLE `Interval` (
 --
 -- Table structure for table `Student`
 --
+DROP TABLE IF EXISTS `Student`;
 
 CREATE TABLE `Student` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
@@ -102,6 +106,7 @@ CREATE TABLE `Student` (
 --
 -- Table structure for table `Subject`
 --
+DROP TABLE IF EXISTS `Subject`;
 
 CREATE TABLE `Subject` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,
@@ -114,6 +119,7 @@ CREATE TABLE `Subject` (
 --
 -- Table structure for table `Teacher`
 --
+DROP TABLE IF EXISTS `Teacher`;
 
 CREATE TABLE `Teacher` (
   `Identifier` int(11) NOT NULL AUTO_INCREMENT,

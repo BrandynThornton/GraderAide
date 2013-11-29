@@ -5,53 +5,78 @@
 
     <title><?= __('graderaide') ?></title>
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" >
     <link href="/GraderAide/css/global.css" rel="stylesheet">
     <link href="/GraderAide/css/datepicker.css" rel="stylesheet">
 
 </head>
 <body>
-<div id="container">
-    <?= $header ?>
-    <div id="main">
-        <a id='display-students'
-           href="/GraderAide/student"
-           class="btn btn-default">
-            Students
-        </a>
-        <a id='add-student-form'
-           href="/GraderAide/student/addnewform"
-           class="btn btn-default">
-            Add New Student
-        </a>
-        <a id='classrooms'
-           href="/GraderAide/classroom"
-           class="btn btn-default">
-            Classrooms
-        </a>
-        <a id='add-classroom'
-           href="/GraderAide/classroom/addnewform"
-           class="btn btn-default">
-            Add New Classroom
-        </a>
-        <a id='teachers'
-           href="/GraderAide/teacher"
-           class="btn btn-default">
-            Teachers
-        </a>
-        <a id='add-teacher'
-           href="/GraderAide/teacher/addnewform"
-           class="btn btn-default">
-            Add New Teacher
-        </a>
-        <a id='add-subject'
-           href="/GraderAide/classroom/subject"
-           class="btn btn-default">
-            Subjects
-        </a>
-
-        <?= $content ?>
-    </div>
+<div id="container" class="container">
+    <?//=// $header ?>
+    
+	<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Grader Aide</a>
+		</div>
+		
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-togle" data-toggle="dropdown">
+						Student
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="/GraderAide/student">View Students</a>
+						</li>
+						<li>
+							<a href="/GraderAide/student/addnewform">Add New Student</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-togle" data-toggle="dropdown">
+						Classroom
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="/GraderAide/classroom">View Classrooms</a>
+						</li>
+						<li>
+							<a href="/GraderAide/classroom/addnewform">Add New Classroom</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="dropdown">
+					<a href="#" class="dropdown-togle" data-toggle="dropdown">
+						Teacher
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="/GraderAide/teacher">View Teachers</a>
+						</li>
+						<li>
+							<a href="/GraderAide/teacher/addnewform">Add New Student</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+    <?= $content ?>
+   
     <?= $footer ?>
 </div>
 </body>

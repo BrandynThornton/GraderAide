@@ -24,7 +24,7 @@
     <tbody>
     <?  foreach ($classroom->Students as $student) { ?>
         <tr>
-            <td><a href="/GraderAide/Classroom/viewStudent/<?= $student->Identifier ?>"><?= $student->FirstName ?> <?= $student->LastName ?></a></td>
+            <td><a href="/GraderAide/Classroom/<?= $classroom->Identifier ?>/<?= $student->Identifier ?>"><?= $student->FirstName ?> <?= $student->LastName ?></a></td>
             <?  foreach ($classroom->Subjects as $subject) {
                     $subScores = $student->subjectSummaries($classroom->Identifier, $subject->Identifier); ?>
             <td><?= $subScores->get('CompletedTotal', '0').' / '.$subScores->get('ExpectedTotal', '0') ?></td>

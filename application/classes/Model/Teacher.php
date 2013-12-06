@@ -6,15 +6,16 @@ class Model_Teacher extends Model_Database
     public $FirstName;
     public $LastName;
 
-    public function __construct($data = NULL)
+    public function __construct($Identifier = NULL, $FirstName = NULL, $LastName = NULL)
     {
-        if (isset($data)) {
-            foreach ($data as $k => $v) {
-                $this->$k = $v;
-            }
-        }
+        $result = DB::select()
+            ->from('Teacher')
+            ->where('Identifier', '=', $Identifier)
+            ->execute();
 
-        parent::__construct();
+        $this->Identifier  = $result->get('Identifier', $Identifier);
+        $this->FirstName   = $result->get('FirstName', $FirstName);
+        $this->LastName    = $result->get('LastName', $LastName);
     }
 
     public function create($data)

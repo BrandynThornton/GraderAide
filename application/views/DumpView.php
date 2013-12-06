@@ -1,0 +1,3 @@
+<? 
+echo Debug::vars($result);
+?>

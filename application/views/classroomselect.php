@@ -16,7 +16,7 @@
     foreach ($classrooms as $classroom) {
         ?>
         <tr>
-            <td><a href="/GraderAide/Classroom/view/<?= $classroom->Identifier ?>"><?= $classroom->Name ?></a></td>
+            <td><a href="/GraderAide/Classroom/<?= $classroom->Identifier ?>"><?= $classroom->Name ?></a></td>
             <td><?= $classroom->Teacher->FirstName ?></td>
             <td><?= $classroom->getStudentCount() ?></td>
             <td><?= $classroom->StartDate ?></td>

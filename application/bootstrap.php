@@ -127,11 +127,19 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('classroom', '(Classroom(/<classId>(/<studentId>)))')
+	->defaults(array(
+        'controller' => 'classroom',
+        'action'     => 'index',
+    ));
+	
 Route::set('default', '(<controller>(/<action>(/<id>)))')
     ->defaults(array(
         'controller' => 'login',
         'action'     => 'index',
     ));
+	
+
 
 /**
  * Enable log4php

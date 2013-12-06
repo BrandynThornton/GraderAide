@@ -30,9 +30,8 @@ class Model_Student extends Model_Database
             ->where('StudentIdentifier', '=', $this->Identifier)
             ->execute();
 
-        for ($i = 0; $i < $results->count(); $i++) {
-            array_push($this->Intervals,
-                new Model_Interval($results->get('Identifier')));
+        for ($i = 0 ; $i < $results->count() ; $i++) {
+            array_push($this->Intervals, new Model_Interval($results->get('Identifier')));
             $results->next();
         }
     }
@@ -69,6 +68,41 @@ class Model_Student extends Model_Database
     {
         return $this->Male ? 'his' : 'her';
     }
-
+    
+    public function subjectSummaries($ClassID, $subID = NULL) {
+        if (isset($subID)) {
+            return DB::select(
+                array('s.DisplayName', 'Subject'),
+                array(DB::expr('SUM(`a`.`CompletedScore`)'), 'CompletedTotal'),
+                array(DB::expr('SUM(`a`.`ExpectedScore`)'), 'ExpectedTotal')
+            )
+            ->from(array('Interval','i'))
+            ->join(array('Assignment','a'))
+            ->on('i.Identifier', '=', 'a.IntervalIdentifier')
+            ->join(array('Subject','s'))
+            ->on('a.SubjectIdentifier', '=', 's.Identifier')
+            ->where('i.StudentIdentifier', '=', $this->Identifier)
+            ->and_where('i.ClassroomIdentifier', '=', $ClassID)
+            ->and_where('s.Identifier', '=', $subID)
+            ->as_object()
+            ->execute();
+        }
+        return DB::select(
+                array('s.DisplayName', 'Subject'),
+                array(DB::expr('SUM(`a`.`CompletedScore`)'), 'CompletedTotal'),
+                array(DB::expr('SUM(`a`.`ExpectedScore`)'), 'ExpectedTotal')
+            )
+            ->from(array('Interval','i'))
+            ->join(array('Assignment','a'))
+            ->on('i.Identifier', '=', 'a.IntervalIdentifier')
+            ->join(array('Subject','s'))
+            ->on('a.SubjectIdentifier', '=', 's.Identifier')
+            ->where('i.StudentIdentifier', '=', $this->Identifier)
+            ->and_where('i.ClassroomIdentifier', '=', $ClassID)
+            ->group_by('s.DisplayName')
+            ->as_object()
+            ->execute();
+        
+    }
 
 }

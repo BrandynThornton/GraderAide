@@ -30,21 +30,24 @@ class Model_Classroom extends Model_Database
         $this->EndDate   = $results->get('EndDate', $EndDate);
 
         $this->TeacherIdentifier = $results->get('TeacherIdentifier', $TeacherIdentifier);
-        $this->Teacher           = isset($this->TeacherIdentifier) ? new Model_Teacher($TeacherIdentifier) : NULL;
+        $this->Teacher           = isset($this->TeacherIdentifier) ? new Model_Teacher($this->TeacherIdentifier) : NULL;
     }
 
     private function getSubjects($ClassroomID)
     {
-        $results = DB::select(array('s.DisplayName', 'Subject'))
+        $results = DB::select(
+                array('s.Identifier', 'Identifier'),
+                array('s.DisplayName', 'Subject')
+            )
             ->from(array('ClassroomSubject', 'cs'))
             ->join(array('Subject', 's'))
             ->on('s.Identifier', '=', 'cs.SubjectIdentifier')
             ->where('cs.ClassroomIdentifier', '=', 'classID')
-            ->param('classID', $ClassroomID);
+            ->param('classID', $ClassroomID)
+            ->as_object();
 
-        $results = $results->execute()->as_array(NULL, 'Subject');
-
-        echo Debug::dump($results);
+        $results = $results->execute()
+            ->as_array();
 
         return $results;
     }

@@ -1,3 +1,4 @@
+<a href="/GraderAide/Classroom/<?= $classroom->Identifier ?>" class="btn btn-default">Return to Classroom</a>
 <div id="classroomStudent">
     <table id="classroomStudentTableWeek" class="table table-striped table-hover table-condensed table-bordered table-responsive week pull-left">
         <thead>

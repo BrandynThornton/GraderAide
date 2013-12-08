@@ -75,13 +75,9 @@ class Controller_Classroom extends Controller_Base
 
         $students = $students->execute();
 
-
         $this->template->content = View::factory('classroom')
 									->set('students', $students)
 									->set('classroom', $classroom);
-
-
-
     }
 
     public function action_subject()
@@ -134,10 +130,7 @@ class Controller_Classroom extends Controller_Base
 			}
 
 		}
-		
-		$this->template->content = Debug::vars($res);
-
-        //$this->redirect('Classroom/view/'.$data['ClassroomID']);
+        $this->redirect($this->request->referrer());
 	}
 }
 

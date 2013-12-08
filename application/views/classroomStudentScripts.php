@@ -48,11 +48,17 @@
 
             getAlertClass: function () {
                 var exp = this.get('ExpectedScore'),
-                    cmpl = this.get('CompletedScore')
+                    cmpl = this.get('CompletedScore');
+
+                if(_.isNaN(parseInt(exp)) || _.isNaN(parseInt(cmpl)))
+                    return;
+
                 if (cmpl < (exp - exp * ALERT_PERCENTAGE))
                     return BAD_CLASS;
+
                 if (cmpl > (exp + exp * ALERT_PERCENTAGE))
                     return GOOD_CLASS;
+
                 return;
             }
 
@@ -121,16 +127,6 @@
                     case 'assignment-expected':
                         this.model.save({ExpectedScore: value == '' ? null : parseInt(value)}, {patch: true});
                         break;
-                }
-            },
-
-            close: function () {
-                var value = this.input.val();
-                if (!value) {
-                    this.clear();
-                } else {
-                    this.model.save({title: value});
-                    this.$el.removeClass('editing');
                 }
             },
 

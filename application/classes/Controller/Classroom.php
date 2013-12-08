@@ -47,11 +47,10 @@ class Controller_Classroom extends Controller_Base
 
     public function action_create()
     {
-        var_dump($this->request->post());
         $classroom = new Model_Classroom;
         $classroom->create($this->request->post());
 
-        $this->action_index();
+        $this->redirect('Classroom');
     }
 
     private function view($classId, $studentId = NULL)

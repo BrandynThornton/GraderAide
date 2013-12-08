@@ -25,15 +25,8 @@ class Model_Student extends Model_Database
         $this->Male        = $result->get('Male', $Male);
         $this->GradeLevel  = $result->get('GradeLevel', $GradeLevel);
 
-        $results = DB::select()
-            ->from('Interval')
-            ->where('StudentIdentifier', '=', $this->Identifier)
-            ->execute();
+        $this->Intervals = $this->getIntervals();
 
-        for ($i = 0 ; $i < $results->count() ; $i++) {
-            array_push($this->Intervals, new Model_Interval($results->get('Identifier')));
-            $results->next();
-        }
     }
 
     public function create($data)
@@ -82,6 +75,7 @@ class Model_Student extends Model_Database
             ->join(array('Subject','s'))
             ->on('a.SubjectIdentifier', '=', 's.Identifier')
             ->where('a.CompletedScore', 'IS NOT', NULL)
+            ->and_where('a.ExpectedScore', 'IS NOT', NULL)
             ->and_where('i.StudentIdentifier', '=', $this->Identifier)
             ->and_where('i.ClassroomIdentifier', '=', $ClassID)
             ->and_where('s.Identifier', '=', $subID)
@@ -105,6 +99,35 @@ class Model_Student extends Model_Database
             ->as_object()
             ->execute();
         
+    }
+
+    public function getIntervals($classID = NULL) {
+        $intervals = array();
+        if (empty($this->Intervals)) {
+            $results = DB::select()
+                ->from('Interval')
+                ->where('StudentIdentifier', '=', $this->Identifier)
+                ->execute();
+
+            for ($i = 0 ; $i < $results->count() ; $i++) {
+                array_push($intervals, new Model_Interval($results->get('Identifier')));
+                $results->next();
+            }
+        } else {
+            $intervals = $this->Intervals;
+        }
+
+        if (is_null($classID)) {
+            return $intervals;
+        }
+
+        $intervals = array_filter($intervals, function($item) use ($classID){
+            return $item->ClassroomIdentifier === $classID;
+        });
+
+        $intervals = array_values($intervals);
+
+        return $intervals;
     }
 
 }

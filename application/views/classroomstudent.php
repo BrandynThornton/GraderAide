@@ -65,7 +65,7 @@
     </td>
 </script>
 <?
-$jsonintervals = json_encode($student->Intervals, JSON_NUMERIC_CHECK);
+$jsonintervals = json_encode($student->getIntervals($classroom->Identifier), JSON_NUMERIC_CHECK);
 $jsonsubjects  = json_encode($classroom->Subjects);
 
 Asset::add_script(View::factory('classroomStudentScripts')

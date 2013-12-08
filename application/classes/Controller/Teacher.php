@@ -22,6 +22,6 @@ class Controller_Teacher extends Controller_Base
         $teacher = new Model_Teacher;
         $teacher->create($this->request->post());
 
-        $this->action_index();
+        $this->redirect('Teacher');
     }
 }

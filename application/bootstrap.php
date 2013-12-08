@@ -127,8 +127,12 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
-Route::set('classroom', '(Classroom(/<classId>(/<studentId>)))')
-	->defaults(array(
+Route::set('classroom', '(Classroom(/<classId>(/<studentId>)))',
+        array(
+            'classId' => '\d+',
+            'studentId' => '\d+'
+        )
+    )->defaults(array(
         'controller' => 'classroom',
         'action'     => 'index',
     ));

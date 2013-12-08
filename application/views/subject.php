@@ -12,7 +12,7 @@
     ?>
 </ul>
 
-<form id="newsubjectform" action="/GraderAide/Classroom/newsubject" method="post" role="form">
+<form id="newsubjectform" action="/GraderAide/classroom/newsubject" method="post" role="form">
     <div class="form-group">
         <label for="subject">Subject</label>
         <input type="text" class="form-control" id="subject" name="subject" placeholder="Math, Science, History, etc.">

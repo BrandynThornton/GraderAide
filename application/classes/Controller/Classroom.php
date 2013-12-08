@@ -102,7 +102,7 @@ class Controller_Classroom extends Controller_Base
 
         $query->execute();
 
-        $this->redirect('Classroom/subject');
+        $this->redirect($this->request->referrer());
     }
 	
 	public function action_addStudent()

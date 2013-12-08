@@ -108,27 +108,44 @@ class Controller_Classroom extends Controller_Base
 	{
 		$data = $this->request->post();
 
-        $query = DB::query(Database::INSERT,
-            'INSERT INTO `Interval` (ClassroomIdentifier, StudentIdentifier, Date)
-            VALUES (ClassroomID, StudentID, ClassroomStartDate)')
-            ->parameters($data);
-			
-		$classroom = new Model_Classroom($this->request->post('ClassroomID'));
+        //calculate number of intervals required for the class (interval == 7 days for now)
+        $startDate = $data['ClassroomStartDate'];
+        $endDate = $data['ClassroomEndDate'];
 
-        $res = $query->execute();
-		
-		if (isset($res[0])) {
-			$query = DB::query(Database::INSERT,
-				'INSERT INTO `Assignment` (IntervalIdentifier, SubjectIdentifier)
-				VALUES (IntervalID, SubjectID)')
-				->bind('IntervalID', $res[0])
-				->bind('SubjectID', $subjectID);
-			foreach ($classroom->Subjects as $subject) {
-				$subjectID = $subject->Identifier;
-				$query->execute();
-			}
+        $datetime1 = new DateTime($startDate);
+        $datetime2 = new DateTime($endDate);
+        //get number of days between
+        $interval = $datetime1->diff($datetime2);
 
-		}
+        $numWeeks = $interval->d / 7;
+        //for each week add an interval for the student
+        for ($i = 0, $ii = $numWeeks; $i < $ii; $i++)
+        {
+            $query = DB::query(Database::INSERT,
+                'INSERT INTO `Interval` (ClassroomIdentifier, StudentIdentifier, Date)
+                VALUES (ClassroomID, StudentID, ClassroomStartDate)')
+                ->parameters($data);
+
+            $classroom = new Model_Classroom($this->request->post('ClassroomID'));
+
+            $res = $query->execute();
+
+            if (isset($res[0])) {
+                $query = DB::query(Database::INSERT,
+                    'INSERT INTO `Assignment` (IntervalIdentifier, SubjectIdentifier)
+                    VALUES (IntervalID, SubjectID)')
+                    ->bind('IntervalID', $res[0])
+                    ->bind('SubjectID', $subjectID);
+                foreach ($classroom->Subjects as $subject) {
+                    $subjectID = $subject->Identifier;
+                    $query->execute();
+                }
+
+            }
+
+            date_add($datetime1, date_interval_create_from_date_string('7 days'));
+            $data['ClassroomStartDate'] = $datetime1->format('Y-m-d H:i:s');
+        }
         $this->redirect($this->request->referrer());
 	}
 }

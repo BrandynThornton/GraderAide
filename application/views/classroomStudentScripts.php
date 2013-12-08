@@ -38,10 +38,10 @@
             idAttribute: 'Identifier',
 
             validate: function(attrs, options) {
-                if (attrs.ExpectedScore != null && ! parseInt(attrs.ExpectedScore)) {
+                if (attrs.ExpectedScore != null && _.isNaN(parseInt(attrs.ExpectedScore))) {
                     return "ExpectedScore Must be a valid number";
                 }
-                if (attrs.CompletedScore != null && ! parseInt(attrs.CompletedScore)) {
+                if (attrs.CompletedScore != null && _.isNaN(parseInt(attrs.CompletedScore))) {
                     return "CompletedScore Must be a valid number";
                 }
             },
@@ -108,9 +108,6 @@
 
                 $cell.removeClass('edit');
 
-                if(!value)
-                    return;
-
                 switch(cell.className) {
                     case 'assignment-description':
                         this.model.save({Description: value}, {patch: true});
@@ -119,10 +116,10 @@
                         this.model.save({LetterGrade: value}, {patch: true});
                         break;
                     case 'assignment-completed':
-                        this.model.save({CompletedScore: parseInt(value)}, {patch: true});
+                        this.model.save({CompletedScore: value === '' ? null : parseInt(value)}, {patch: true});
                         break;
                     case 'assignment-expected':
-                        this.model.save({ExpectedScore: parseInt(value)}, {patch: true});
+                        this.model.save({ExpectedScore: value == '' ? null : parseInt(value)}, {patch: true});
                         break;
                 }
             },

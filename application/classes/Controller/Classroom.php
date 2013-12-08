@@ -59,6 +59,7 @@ class Controller_Classroom extends Controller_Base
 
         if (isset($studentId)) {
             $student = new Model_Student($studentId);
+            $student->subjectSum = $student->subjectSummaries($classId)->as_array();
 
             $this->template->content = View::factory('classroomStudent')
                 ->set('classroom', $classroom)

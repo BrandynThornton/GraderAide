@@ -65,12 +65,10 @@
     </td>
 </script>
 <?
-$jsonintervals = json_encode($student->getIntervals($classroom->Identifier), JSON_NUMERIC_CHECK);
-$jsonsubjects  = json_encode($classroom->Subjects);
-
 Asset::add_script(View::factory('classroomStudentScripts')
-    ->set('jsonintervals', $jsonintervals)
-    ->set('jsonsubjects', $jsonsubjects)
+    ->set('jsonintervals', json_encode($student->getIntervals($classroom->Identifier), JSON_NUMERIC_CHECK))
+    ->set('jsonsubjects', json_encode($classroom->Subjects))
+    ->set('subjectSummaries', json_encode($student->subjectSum))
     ->render()
 );
 ?>

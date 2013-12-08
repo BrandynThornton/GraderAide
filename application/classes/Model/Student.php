@@ -66,6 +66,7 @@ class Model_Student extends Model_Database
         if (isset($subID)) {
             return DB::select(
                 array('s.DisplayName', 'Subject'),
+                array('s.Identifier', 'SubjectIdentifier'),
                 array(DB::expr('SUM(`a`.`CompletedScore`)'), 'CompletedTotal'),
                 array(DB::expr('SUM(`a`.`ExpectedScore`)'), 'ExpectedTotal')
             )
@@ -84,6 +85,7 @@ class Model_Student extends Model_Database
         }
         return DB::select(
                 array('s.DisplayName', 'Subject'),
+                array('s.Identifier', 'SubjectIdentifier'),
                 array(DB::expr('SUM(`a`.`CompletedScore`)'), 'CompletedTotal'),
                 array(DB::expr('SUM(`a`.`ExpectedScore`)'), 'ExpectedTotal')
             )
@@ -93,6 +95,7 @@ class Model_Student extends Model_Database
             ->join(array('Subject','s'))
             ->on('a.SubjectIdentifier', '=', 's.Identifier')
             ->where('a.CompletedScore', 'IS NOT', NULL)
+            ->and_where('a.ExpectedScore', 'IS NOT', NULL)
             ->and_where('i.StudentIdentifier', '=', $this->Identifier)
             ->and_where('i.ClassroomIdentifier', '=', $ClassID)
             ->group_by('s.DisplayName')

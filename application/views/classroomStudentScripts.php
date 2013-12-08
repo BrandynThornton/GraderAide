@@ -37,7 +37,7 @@
 
             idAttribute: 'Identifier',
 
-            validate: function(attrs, options) {
+            validate: function (attrs, options) {
                 if (attrs.ExpectedScore != null && _.isNaN(parseInt(attrs.ExpectedScore))) {
                     return "ExpectedScore Must be a valid number";
                 }
@@ -50,7 +50,7 @@
                 var exp = this.get('ExpectedScore'),
                     cmpl = this.get('CompletedScore');
 
-                if(_.isNaN(parseInt(exp)) || _.isNaN(parseInt(cmpl)))
+                if (_.isNaN(parseInt(exp)) || _.isNaN(parseInt(cmpl)))
                     return;
 
                 if (cmpl < (exp - exp * ALERT_PERCENTAGE))
@@ -101,20 +101,20 @@
             edit: function (e) {
                 var $cell = $(e.currentTarget);
 
-                setTimeout(function(){
+                setTimeout(function () {
                     $cell.addClass('edit');
                     $cell.find('input').focus();
                 }, 0);
             },
 
-            blurCell: function(e){
-                var cell  = e.currentTarget,
+            blurCell: function (e) {
+                var cell = e.currentTarget,
                     $cell = $(cell),
                     value = $.trim($cell.find('input').val());
 
                 $cell.removeClass('edit');
 
-                switch(cell.className) {
+                switch (cell.className) {
                     case 'assignment-description':
                         this.model.save({Description: value}, {patch: true});
                         break;
@@ -158,12 +158,13 @@
             el: "#classroomStudent",
 
             events: {
-                'click' : 'onClick'
+                'click': 'onClick'
             },
 
-            subjects     : <?= $jsonsubjects ?>,
-            subjectTables: {},
-            intervals    : new Intervals(<?= $jsonintervals ?>),
+            subjects        : <?= $jsonsubjects ?>,
+            subjectTables   : {},
+            intervals       : new Intervals(<?= $jsonintervals ?>),
+            subjectSummaries: <?= $subjectSummaries ?>,
 
             initialize: function () {
                 this.weekTable = new this.weekTable();
@@ -199,7 +200,7 @@
                 return self;
             },
 
-            onClick: function() {
+            onClick: function () {
                 this.$('table.subject td.edit').removeClass('edit');
             },
 

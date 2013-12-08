@@ -46,3 +46,26 @@ table.week {
 td {
     height: 31px;
 }
+.edit-value {
+    display: none;
+}
+table.table td.edit {
+    padding: 0px;
+}
+td.edit .edit-value {
+    display: block;
+}
+td.edit .shown-value {
+    display: none;
+}
+td .input-group-sm>.form-control {
+    font-size: inherit;
+}
+table.subject td,
+table.subject th {
+    width: 1px;
+}
+table.subject td.assignment-description.edit
+{
+    width: 250px;
+}

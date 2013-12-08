@@ -132,6 +132,21 @@ Route::set('classroom', '(Classroom(/<classId>(/<studentId>)))')
         'controller' => 'classroom',
         'action'     => 'index',
     ));
+
+Route::set('assignment', '(Assignment(/<assignmentId>))')
+    ->filter(function($route, $params, $request)
+    {
+        $method = $request->method();
+        if ($method === 'PATCH')  {
+            $params['action'] = strtolower($method);
+            return $params;
+        }
+        return TRUE;
+    })
+    ->defaults(array(
+        'controller' => 'assignment',
+        'action'     => 'index',
+    ));
 	
 Route::set('default', '(<controller>(/<action>(/<id>)))')
     ->defaults(array(

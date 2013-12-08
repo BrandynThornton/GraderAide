@@ -2,6 +2,10 @@
     $(document).ready(function () {
         'use strict'
 
+        var ALERT_PERCENTAGE = 0.12;
+        var BAD_CLASS = 'danger';
+        var GOOD_CLASS = 'success';
+
 
         // Model
         // ----------
@@ -29,10 +33,28 @@
 
         });
         var Assignment = Backbone.Model.extend({
+            urlRoot: '/GraderAide/Assignment/',
 
-//            initialize: function () {
-//
-//            }
+            idAttribute: 'Identifier',
+
+            validate: function(attrs, options) {
+                if (attrs.ExpectedScore != null && ! parseInt(attrs.ExpectedScore)) {
+                    return "ExpectedScore Must be a valid number";
+                }
+                if (attrs.CompletedScore != null && ! parseInt(attrs.CompletedScore)) {
+                    return "CompletedScore Must be a valid number";
+                }
+            },
+
+            getAlertClass: function () {
+                var exp = this.get('ExpectedScore'),
+                    cmpl = this.get('CompletedScore')
+                if (cmpl < (exp - exp * ALERT_PERCENTAGE))
+                    return BAD_CLASS;
+                if (cmpl > (exp + exp * ALERT_PERCENTAGE))
+                    return GOOD_CLASS;
+                return;
+            }
 
         });
 
@@ -52,17 +74,12 @@
         var assignmentView = Backbone.View.extend({
             tagName: 'tr',
 
-            template: _.template(
-                '<td class="assignment-description"><%= Description %></td>' +
-                    '<td class="assignment-letter"><%= LetterGrade %></td>' +
-                    '<td class="assignment-completed"><%= CompletedScore %></td>' +
-                    '<td class="assignment-expected"><%= ExpectedScore %></td>'
-            ),
+            template: _.template($('#Assignment').html()),
 
             events: {
                 'click td'   : 'edit',
-                'keypress td': 'updateOnEnter'
-
+                'keypress td': 'updateOnEnter',
+                'blur td'    : 'blurCell'
             },
 
             initialize: function () {
@@ -71,16 +88,46 @@
 
             render: function () {
                 this.$el.html(this.template(this.model.toJSON()));
+                this.$el.removeClass(GOOD_CLASS + ' ' + BAD_CLASS).addClass(this.model.getAlertClass())
                 return this;
             },
 
-            edit         : function () {
-                this.$el.addClass('editing');
-                this.input.focus();
+            edit: function (e) {
+                var $cell = $(e.currentTarget);
+
+                setTimeout(function(){
+                    $cell.addClass('edit');
+                    $cell.find('input').focus();
+                }, 0);
             },
 
-            // Close the `'editing'` mode, saving changes to the todo.
-            close        : function () {
+            blurCell: function(e){
+                var cell  = e.currentTarget,
+                    $cell = $(cell),
+                    value = $.trim($cell.find('input').val());
+
+                $cell.removeClass('edit');
+
+                if(!value)
+                    return;
+
+                switch(cell.className) {
+                    case 'assignment-description':
+                        this.model.save({Description: value}, {patch: true});
+                        break;
+                    case 'assignment-letter':
+                        this.model.save({LetterGrade: value}, {patch: true});
+                        break;
+                    case 'assignment-completed':
+                        this.model.save({CompletedScore: parseInt(value)}, {patch: true});
+                        break;
+                    case 'assignment-expected':
+                        this.model.save({ExpectedScore: parseInt(value)}, {patch: true});
+                        break;
+                }
+            },
+
+            close: function () {
                 var value = this.input.val();
                 if (!value) {
                     this.clear();
@@ -90,9 +137,8 @@
                 }
             },
 
-            // If you hit `enter`, we're through editing the item.
             updateOnEnter: function (e) {
-                if (e.keyCode == 13) this.close();
+                if (e.keyCode == 13) this.blurCell(e);
             }
         });
 
@@ -119,7 +165,7 @@
             el: "#classroomStudent",
 
             events: {
-
+                'click' : 'onClick'
             },
 
             subjects     : <?= $jsonsubjects ?>,
@@ -158,6 +204,10 @@
                 });
 
                 return self;
+            },
+
+            onClick: function() {
+                this.$('table.subject td.edit').removeClass('edit');
             },
 
             weekTable: Backbone.View.extend({

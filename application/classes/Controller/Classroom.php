@@ -61,7 +61,10 @@ class Controller_Classroom extends Controller_Base
         if (isset($studentId)) {
             $student = new Model_Student($studentId);
 
-            $this->template->content = View::factory('DumpView')->set('result', $student);
+            $this->template->content = View::factory('classroomStudent')
+                ->set('classroom', $classroom)
+                ->set('student', $student);
+
             return;
         }
 

@@ -15,7 +15,7 @@ abstract class Controller_Base extends Controller_Template
 
             $this->template->header = View::factory('header');
 
-            $this->template->footer = View::factory('footer');
+//            $this->template->footer = View::factory('footer');
         }
     }
 }

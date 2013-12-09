@@ -1,3 +1,12 @@
+<div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="/GraderAide/classroom">View Classrooms</a></li>
+        <li><a href="/GraderAide/classroom/addnewform">Add New Classroom</a></li>
+        <li class="active"><a href="#">Subjects</a></li>
+    </ul>
+</div>
+
+<div class="col-md-10">
 <? if (!count($subjects)) {
     echo "Please add a new subject";
 } ?>
@@ -20,3 +29,4 @@
 
     <button type="submit" class="btn btn-default">Add</button>
 </form>
+</div>

@@ -5,6 +5,7 @@
 	<ul class="nav nav-pills nav-stacked">
 		<li class="active"><a href="#">View Classrooms</a></li>
 		<li><a href="/GraderAide/classroom/addnewform">Add New Classroom</a></li>
+        <li><a href="/GraderAide/classroom/subject">Subjects</a></li>
 	</ul>
 </div>
 

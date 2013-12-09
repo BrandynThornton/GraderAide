@@ -13,11 +13,12 @@ var Chart = {
         var intervals = this.studentObj.Intervals.filter(function(x) { return x.ClassroomIdentifier == classroomId; });
         var gradeData = [['Week', 'Expected', 'Completed']];
 
+        var totalExpected = 0;
+        var totalCompleted = 0;
+
         for(i = 0, ii = intervals.length; i < ii; i++)
         {
             var assignments = intervals[i].Assignments.filter(function(x) { return x.SubjectIdentifier == subjectId; });
-            var totalExpected = 0;
-            var totalCompleted = 0;
             for(j = 0, jj = assignments.length; j < jj; j++)
             {
                 totalExpected += parseFloat(assignments[j].ExpectedScore);

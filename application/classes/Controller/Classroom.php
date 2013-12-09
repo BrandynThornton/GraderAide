@@ -118,7 +118,7 @@ class Controller_Classroom extends Controller_Base
         //get number of days between
         $interval = $datetime1->diff($datetime2);
 
-        $numWeeks = $interval->d / 7;
+        $numWeeks = $interval->days / 7;
         //for each week add an interval for the student
         for ($i = 0, $ii = $numWeeks; $i < $ii; $i++)
         {

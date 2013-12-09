@@ -27,9 +27,13 @@
             <td><a href="/GraderAide/Classroom/<?= $classroom->Identifier ?>/<?= $student->Identifier ?>"><?= $student->FirstName ?> <?= $student->LastName ?></a></td>
             <?  foreach ($classroom->Subjects as $subject) {
                     $subScores = $student->subjectSummaries($classroom->Identifier, $subject->Identifier); ?>
-            <td><?= $subScores->get('CompletedTotal', '0').' / '.$subScores->get('ExpectedTotal', '0') ?></td>
+            <td><a onclick="Chart.drawChart(<?= $student->Identifier.",".$classroom->Identifier.",".$subject->Identifier ?>)"><?= $subScores->get('CompletedTotal', '0').' / '.$subScores->get('ExpectedTotal', '0') ?></a></td>
             <?  }  ?>
+            <script type="application/json" id="<?= $student->Identifier ?>"><?= json_encode($student) ?></script>
         </tr>
     <?  }  ?>
     </tbody>
 </table>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/GraderAide/js/chart.js"></script>

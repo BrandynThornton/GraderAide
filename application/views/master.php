@@ -11,71 +11,41 @@
 
 </head>
 <body>
+
+
+
 <div id="container" class="container">
-    <?//=// $header ?>
-    
-	<div class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle Navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Grader Aide</a>
-		</div>
-		
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="dropdown">
-					<a href="#" class="dropdown-togle" data-toggle="dropdown">
-						Student
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="/GraderAide/student">View Students</a>
-						</li>
-						<li>
-							<a href="/GraderAide/student/addnewform">Add New Student</a>
-						</li>
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="#" class="dropdown-togle" data-toggle="dropdown">
-						Classroom
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="/GraderAide/classroom">View Classrooms</a>
-						</li>
-						<li>
-							<a href="/GraderAide/classroom/addnewform">Add New Classroom</a>
-						</li>
-					</ul>
-				</li>
-				
-				<li class="dropdown">
-					<a href="#" class="dropdown-togle" data-toggle="dropdown">
-						Teacher
-						<b class="caret"></b>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="/GraderAide/teacher">View Teachers</a>
-						</li>
-						<li>
-							<a href="/GraderAide/teacher/addnewform">Add New Student</a>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
+<div class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle Navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Grader Aide</a>
 	</div>
 	
+	<div class="navbar-collapse collapse">
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="/GraderAide/student">Student</a>
+			</li>
+			
+			<li>
+				<a href="/GraderAide/classroom">Classrooms</a>
+			</li>
+			
+			<li class="dropdown">
+				<a href="/GraderAide/teacher">Teacher</a>
+			</li>
+		</ul>
+	</div>
+</div>
+    <?//=// $header ?>	
+	<div class="row">
     <?= $content ?>
+	</div>
    
 <!--    --><?//= $footer ?>
 </div>

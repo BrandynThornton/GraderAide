@@ -13,20 +13,22 @@ class Model_Student extends Model_Database
 
     public function __construct($Identifier = NULL, $FirstName = NULL, $LastName = NULL, $DateOfBirth = NULL, $Male = NULL, $GradeLevel = NULL)
     {
-        $result = DB::select()
-            ->from('Student')
-            ->where('Identifier', '=', $Identifier)
-            ->execute();
+        if(!is_null($Identifier))
+        {
+            $result = DB::select()
+                ->from('Student')
+                ->where('Identifier', '=', $Identifier)
+                ->execute();
 
-        $this->Identifier  = $result->get('Identifier', $Identifier);
-        $this->FirstName   = $result->get('FirstName', $FirstName);
-        $this->LastName    = $result->get('LastName', $LastName);
-        $this->DateOfBirth = $result->get('DateOfBirth', $DateOfBirth);
-        $this->Male        = $result->get('Male', $Male);
-        $this->GradeLevel  = $result->get('GradeLevel', $GradeLevel);
+            $this->Identifier  = $result->get('Identifier', $Identifier);
+            $this->FirstName   = $result->get('FirstName', $FirstName);
+            $this->LastName    = $result->get('LastName', $LastName);
+            $this->DateOfBirth = $result->get('DateOfBirth', $DateOfBirth);
+            $this->Male        = $result->get('Male', $Male);
+            $this->GradeLevel  = $result->get('GradeLevel', $GradeLevel);
 
-        $this->Intervals = $this->getIntervals();
-
+            $this->Intervals = $this->getIntervals();
+        }
     }
 
     public function create($data)

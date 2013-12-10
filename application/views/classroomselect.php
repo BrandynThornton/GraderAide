@@ -28,8 +28,8 @@
             <td><a href="/GraderAide/Classroom/<?= $classroom->Identifier ?>"><?= $classroom->Name ?></a></td>
             <td><?= $classroom->Teacher->FirstName ?></td>
             <td><?= $classroom->getStudentCount() ?></td>
-            <td><?= $classroom->StartDate ?></td>
-            <td><?= $classroom->EndDate ?></td>
+            <td><?= date('d/m/Y', strtotime($classroom->StartDate)) ?></td>
+            <td><?= date('d/m/Y', strtotime($classroom->EndDate)) ?></td>
         </tr>
     <?
     }

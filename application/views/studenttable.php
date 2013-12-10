@@ -24,7 +24,7 @@
         <tr>
             <td><?= $student->FirstName ?></td>
             <td><?= $student->LastName ?></td>
-            <td><?= $student->DateOfBirth ?></td>
+            <td><?= $student->getBirthDate() ?></td>
             <td><?= $student->gender() ?></td>
             <td><?= $student->GradeLevel ?></td>
         </tr>

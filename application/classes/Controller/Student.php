@@ -3,14 +3,6 @@
 class Controller_Student extends Controller_Base
 {
 
-    //private $getstudents;
-    //
-    //public function __construct()
-    //{
-    //	$this->getstudents = DB::select()->from('Student')->as_object('Student');
-    //	//parent:__construct();
-    //}
-
     public function action_index()
     {
         $results = DB::select()->from('Student')->as_object('Model_Student');
@@ -27,8 +19,10 @@ class Controller_Student extends Controller_Base
 
     public function action_newstudent()
     {
+        $data = $this->request->post();
+
         $student = new Model_Student;
-        $student->create($_POST);
+        $student->create($data);
 
         $this->template->content = View::factory('studentaddsuccess')
             ->set('student', $student);

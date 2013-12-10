@@ -135,4 +135,8 @@ class Model_Student extends Model_Database
         return $intervals;
     }
 
+    public function getBirthDate() {
+        return date('d/m/Y', strtotime($this->DateOfBirth));
+    }
+
 }

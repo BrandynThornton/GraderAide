@@ -6,16 +6,16 @@
     </ul>
 </div>
 
-<div class="col-md-10">
+<div class="col-md-2">
 <? if (!count($subjects)) {
     echo "Please add a new subject";
 } ?>
 
-<ul>
+<ul class="list-group">
     <?
     foreach ($subjects as $subject) {
         ?>
-        <li><?= $subject->DisplayName ?></li>
+        <li class="list-group-item"><?= $subject->DisplayName ?></li>
     <?
     }
     ?>
